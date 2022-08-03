@@ -10,6 +10,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    env:
+      DOTNET_PROJECT_DIR: ${{ env.DOTNET_PROJECT_DIR }}
 
     steps:
     - uses: actions/checkout@v2
