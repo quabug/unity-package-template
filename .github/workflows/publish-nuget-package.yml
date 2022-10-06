@@ -18,12 +18,12 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore Standard
     - name: Pack
       run: |
-        cd StandardLibrary
+        cd  Standard/MyPackage
         dotnet pack -c Release -o out
     - name: Publish
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-      run: dotnet nuget push ./StandardLibrary/out/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./Standard/MyPackage/out/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
