@@ -12,14 +12,16 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-2022]
       fail-fast: false
     runs-on: ${{ matrix.os }}
+    env:
+      DOTNET_LIBRARY: dotnet
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.3xx # https://github.com/microsoft/testfx/issues/1733
+        dotnet-version: 8
     - name: Restore dependencies
-      run: dotnet restore StandardLibrary
+      run: dotnet restore ${{ env.DOTNET_LIBRARY }}
     - name: Build
-      run: dotnet build --no-restore StandardLibrary
+      run: dotnet build --no-restore ${{ env.DOTNET_LIBRARY }}
     - name: Test
-      run: dotnet test --no-build --verbosity normal StandardLibrary
+      run: dotnet test --no-build --verbosity normal ${{ env.DOTNET_LIBRARY }}
