@@ -3,6 +3,10 @@ name: dotnet-unit-test
 on:
 #  pull_request:
 #    branches: [ main ]
+#    paths:
+#      - '**.cs'
+#      - '**.csproj'
+#      - '**/global.json'
   workflow_dispatch:
 
 jobs:
